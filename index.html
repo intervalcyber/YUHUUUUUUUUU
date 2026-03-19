@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IntervalCyber — Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f0fdf4;
+  --panel:#ffffff;
+  --border:#bbf7d0;
+  --accent:#16a34a;
+  --accent2:#15803d;
+  --ok:#22c55e;
+  --danger:#ef4444;
+  --text:#14532d;
+  --dim:#6b7280;
+  --mono:'Share Tech Mono',monospace;
+  --display:'Orbitron',monospace;
+  --body:'Exo 2',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--body);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(22,163,74,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(22,163,74,.04) 1px,transparent 1px);
+  background-size:50px 50px;
+  pointer-events:none;z-index:0;
+}
+
+.container{
+  position:relative;z-index:1;
+  width:100%;max-width:420px;
+}
+
+/* HEADER */
+.header{text-align:center;margin-bottom:28px;}
+
+.logo-wrap{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:64px;height:64px;border-radius:16px;
+  background:linear-gradient(135deg,var(--accent2),var(--ok));
+  margin-bottom:16px;
+  box-shadow:0 8px 24px rgba(22,163,74,.25);
+  animation:float 3s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-6px);}
+}
+.logo-ic{
+  font-family:var(--display);
+  font-size:20px;font-weight:900;
+  color:#fff;letter-spacing:1px;
+}
+
+.welcome{
+  font-family:var(--display);
+  font-size:28px;font-weight:900;
+  color:var(--accent);
+  letter-spacing:3px;
+  margin-bottom:4px;
+  text-shadow:0 2px 8px rgba(22,163,74,.15);
+}
+
+.subtitle{
+  font-size:13px;color:var(--dim);
+  font-family:var(--mono);letter-spacing:1px;
+}
+
+/* CARD */
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:28px 24px;
+  box-shadow:0 8px 32px rgba(22,163,74,.08);
+  margin-bottom:16px;
+}
+
+.card-title{
+  font-family:var(--display);
+  font-size:11px;letter-spacing:2px;
+  color:var(--accent);text-transform:uppercase;
+  margin-bottom:20px;text-align:center;
+}
+
+/* INPUT */
+.input-label{
+  font-size:10px;letter-spacing:1.5px;
+  color:var(--dim);font-family:var(--mono);
+  display:block;margin-bottom:6px;
+  text-transform:uppercase;
+}
+
+.input-wrap{position:relative;margin-bottom:20px;}
+
+input[type=password]{
+  width:100%;
+  padding:13px 16px;
+  background:var(--bg);
+  border:1.5px solid var(--border);
+  border-radius:10px;
+  color:var(--text);
+  font-family:var(--mono);
+  font-size:18px;
+  letter-spacing:6px;
+  outline:none;
+  transition:all .25s;
+  text-align:center;
+}
+input[type=password]:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(22,163,74,.1);
+  background:#fff;
+}
+input[type=password]::placeholder{
+  color:#d1d5db;letter-spacing:2px;font-size:14px;
+}
+
+/* BUTTON */
+.btn-login{
+  width:100%;padding:14px;
+  background:linear-gradient(135deg,var(--accent2),var(--ok));
+  border:none;border-radius:10px;
+  color:#fff;
+  font-family:var(--display);
+  font-size:13px;font-weight:700;
+  letter-spacing:3px;cursor:pointer;
+  transition:all .25s;
+  box-shadow:0 4px 14px rgba(22,163,74,.3);
+}
+.btn-login:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(22,163,74,.4);
+}
+.btn-login:active{transform:translateY(0);}
+
+/* ERROR */
+.error-msg{
+  display:none;
+  margin-top:14px;
+  padding:12px;
+  background:rgba(239,68,68,.05);
+  border:1px solid rgba(239,68,68,.2);
+  border-radius:8px;
+  color:var(--danger);
+  font-size:12px;
+  font-family:var(--mono);
+  text-align:center;
+  letter-spacing:.5px;
+  animation:shake .3s ease;
+}
+@keyframes shake{
+  0%,100%{transform:translateX(0);}
+  25%{transform:translateX(-6px);}
+  75%{transform:translateX(6px);}
+}
+
+/* CATATAN */
+.catatan{
+  background:#fffbeb;
+  border:1px solid #fde68a;
+  border-radius:12px;
+  padding:16px 18px;
+}
+.catatan-title{
+  font-family:var(--display);
+  font-size:10px;letter-spacing:2px;
+  color:#92400e;text-transform:uppercase;
+  margin-bottom:10px;
+  display:flex;align-items:center;gap:6px;
+}
+.catatan-text{
+  font-size:12px;color:#78350f;
+  line-height:1.8;font-family:var(--body);
+}
+
+/* STATUS */
+.status-bar{
+  display:flex;align-items:center;justify-content:center;
+  gap:6px;margin-top:20px;
+  font-family:var(--mono);font-size:10px;
+  color:var(--dim);letter-spacing:1px;
+}
+.status-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--ok);
+  animation:pulse 1.5s infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1);}
+  50%{opacity:.5;transform:scale(.8);}
+}
+
+/* FOOTER */
+footer{
+  text-align:center;margin-top:16px;
+  font-size:9px;color:var(--dim);
+  font-family:var(--mono);letter-spacing:1px;
+}
+footer span{color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo-wrap">
+      <div class="logo-ic">IC</div>
+    </div>
+    <div class="welcome">SELAMAT DATANG</div>
+    <div class="subtitle">IntervalCyber Field Admin System</div>
+  </div>
+
+  <!-- LOGIN CARD -->
+  <div class="card">
+    <div class="card-title">Masukan Password</div>
+
+    <label class="input-label">Password Akses</label>
+    <div class="input-wrap">
+      <input type="password" id="pw"
+             placeholder="••••••••••••"
+             onkeydown="if(event.key==='Enter')doLogin()"/>
+    </div>
+
+    <button class="btn-login" onclick="doLogin()">MASUK</button>
+
+    <div class="error-msg" id="err-msg">
+      Akses ditolak. Hubungi administrator sistem.
+    </div>
+
+    <div class="status-bar">
+      <div class="status-dot"></div>
+      SISTEM AKTIF
+    </div>
+  </div>
+
+  <!-- CATATAN -->
+  <div class="catatan">
+    <div class="catatan-title">
+      ⚠️ Catatan Penting
+    </div>
+    <div class="catatan-text">
+      Sistem ini hanya dapat diakses oleh pihak yang berwenang.
+      Data lapangan bersifat rahasia dan dilindungi untuk menjaga
+      integritas operasional di lapangan.
+    </div>
+  </div>
+
+  <footer>
+    <span>IntervalCyber</span> Field Admin System &nbsp;·&nbsp; v2.0 · 2026
+  </footer>
+
+</div>
+
+<script>
+// ══════════════════════════════════════
+// Password otomatis berubah tiap bulan
+// Rumus: IC + bulan (2 digit) + tahun
+// Contoh Maret 2026 = IC032026RIZKY
+// ══════════════════════════════════════
+function getMonthlyPassword() {
+  const now = new Date();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const year = now.getFullYear();
+  return `IC${month}${year}RIZKY`;
+}
+
+function doLogin() {
+  const val = document.getElementById('pw').value;
+  const err = document.getElementById('err-msg');
+  const btn = document.querySelector('.btn-login');
+
+  if (val === 'RIZKY-ADMIN-2026') {
+    btn.textContent = 'Memverifikasi...';
+    btn.style.background = 'linear-gradient(135deg,#15803d,#16a34a)';
+    setTimeout(() => { window.location.href = 'menu.html'; }, 700);
+  } else {
+    err.style.display = 'block';
+    err.style.animation = 'none';
+    setTimeout(() => { err.style.animation = 'shake .3s ease'; }, 10);
+    document.getElementById('pw').value = '';
+    document.getElementById('pw').focus();
+    setTimeout(() => { err.style.display = 'none'; }, 3000);
+  }
+}
+</script>
+</body>
+</html>
