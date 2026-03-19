@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INTERVALCYBER — SECURE ACCESS</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap');
+  :root{--bg:#000;--panel:#0a0a0a;--green:#00ff41;--dim:#004d14;--red:#ff0033;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--green);font-family:'Share Tech Mono',monospace;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,65,.03) 2px,rgba(0,255,65,.03) 4px);pointer-events:none;z-index:999;}
+  #matrix{position:fixed;inset:0;opacity:.15;z-index:0;}
+  .container{position:relative;z-index:1;width:90%;max-width:420px;padding:20px;}
+  .header{text-align:center;margin-bottom:32px;}
+  .skull{font-size:48px;margin-bottom:12px;animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.95)}}
+  .sys-title{font-family:'Orbitron',monospace;font-size:18px;font-weight:900;letter-spacing:4px;color:var(--green);text-shadow:0 0 20px var(--green);margin-bottom:4px;}
+  .sys-sub{font-size:10px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;}
+  .terminal{background:var(--panel);border:1px solid var(--green);border-radius:4px;padding:24px;box-shadow:0 0 30px rgba(0,255,65,.15);position:relative;}
+  .terminal::before{content:'● ● ●';position:absolute;top:10px;left:14px;font-size:10px;color:var(--dim);letter-spacing:4px;}
+  .terminal-title{text-align:center;font-size:10px;letter-spacing:3px;color:var(--dim);margin-bottom:24px;margin-top:8px;}
+  .prompt-line{font-size:11px;color:var(--dim);margin-bottom:16px;overflow:hidden;white-space:nowrap;border-right:2px solid var(--green);animation:typing 3s steps(40) .5s both,blink .8s infinite step-end;width:0;}
+  @keyframes typing{from{width:0}to{width:100%}}
+  @keyframes blink{50%{border-color:transparent}}
+  .input-label{font-size:10px;letter-spacing:2px;color:var(--dim);margin-bottom:8px;display:block;}
+  .input-wrap{position:relative;margin-bottom:20px;}
+  .input-wrap::before{content:'>';position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--green);font-size:14px;}
+  input[type=password]{width:100%;padding:12px 12px 12px 28px;background:rgba(0,255,65,.05);border:1px solid var(--dim);border-radius:2px;color:var(--green);font-family:'Share Tech Mono',monospace;font-size:16px;letter-spacing:4px;outline:none;transition:all .3s;}
+  input[type=password]:focus{border-color:var(--green);box-shadow:0 0 15px rgba(0,255,65,.2);}
+  input[type=password]::placeholder{color:var(--dim);letter-spacing:2px;font-size:12px;}
+  .btn-masuk{width:100%;padding:14px;background:transparent;border:1px solid var(--green);color:var(--green);font-family:'Orbitron',monospace;font-size:13px;font-weight:700;letter-spacing:4px;cursor:pointer;text-transform:uppercase;transition:all .3s;}
+  .btn-masuk:hover{background:rgba(0,255,65,.1);box-shadow:0 0 20px rgba(0,255,65,.3);}
+  .btn-masuk:active{transform:scale(.98);}
+  .status-bar{margin-top:20px;padding:10px;border:1px solid var(--dim);font-size:10px;letter-spacing:1px;color:var(--dim);text-align:center;}
+  .status-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:6px;animation:pulse 1.5s infinite;}
+  .error-msg{display:none;margin-top:12px;padding:10px;border:1px solid var(--red);background:rgba(255,0,51,.05);color:var(--red);font-size:11px;letter-spacing:1px;text-align:center;}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+  .footer{text-align:center;margin-top:20px;font-size:9px;letter-spacing:2px;color:var(--dim);}
+  .glitch{animation:glitch 3s infinite;}
+  @keyframes glitch{0%,90%,100%{text-shadow:0 0 20px var(--green)}91%{text-shadow:-2px 0 var(--red),2px 0 #0ff}93%{text-shadow:2px 0 var(--red),-2px 0 #0ff}95%{text-shadow:0 0 20px var(--green)}}
+</style>
+</head>
+<body>
+<canvas id="matrix"></canvas>
+<div class="container">
+  <div class="header">
+    <div class="skull">🔒</div>
+    <div class="sys-title glitch">INTERVALCYBER</div>
+    <div class="sys-sub">FIELD ADMIN SYSTEM — SECURE ACCESS</div>
+  </div>
+  <div class="terminal">
+    <div class="terminal-title">[ AUTENTIKASI DIPERLUKAN ]</div>
+    <div class="prompt-line">// Masukkan kredensial untuk melanjutkan...</div>
+    <label class="input-label">ACCESS KEY :</label>
+    <div class="input-wrap">
+      <input type="password" id="pw" placeholder="••••••••••••••••"
+             onkeydown="if(event.key==='Enter')doLogin()"/>
+    </div>
+    <button class="btn-masuk" onclick="doLogin()">⚡ MASUK</button>
+    <div class="error-msg" id="err-msg">⛔ AKSES DITOLAK — HUBUNGI DEVELOPER</div>
+    <div class="status-bar">
+      <span class="status-dot"></span>
+      SISTEM ONLINE · ENKRIPSI AKTIF · MONITORING ON
+    </div>
+  </div>
+  <div class="footer">INTERVALCYBER FIELD ADMIN SYSTEM · v2.0 · 2026</div>
+</div>
+<script>
+const PASSWORD = 'RIZKY-ADMIN-2026';
+function doLogin() {
+  const val = document.getElementById('pw').value;
+  const err = document.getElementById('err-msg');
+  if (val === PASSWORD) {
+    document.querySelector('.btn-masuk').textContent = '✅ AKSES DIBERIKAN...';
+    setTimeout(() => { window.location.href = 'menu.html'; }, 800);
+  } else {
+    err.style.display = 'block';
+    err.style.animation = 'none';
+    setTimeout(() => { err.style.animation = 'shake .3s ease'; }, 10);
+    document.getElementById('pw').value = '';
+    document.getElementById('pw').focus();
+    setTimeout(() => { err.style.display = 'none'; }, 3000);
+  }
+}
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+const chars = 'INTERVALCYBER01アイウエオカキクケコ';
+const cols = Math.floor(canvas.width / 16);
+const drops = Array(cols).fill(1);
+function drawMatrix() {
+  ctx.fillStyle = 'rgba(0,0,0,.05)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = '#00ff41';
+  ctx.font = '14px monospace';
+  drops.forEach((y, i) => {
+    ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * 16, y * 16);
+    if (y * 16 > canvas.height && Math.random() > .975) drops[i] = 0;
+    drops[i]++;
+  });
+}
+setInterval(drawMatrix, 50);
+window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IntervalCyber — Menu Utama</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f0fdf4;--panel:#ffffff;--panel2:#f0fdf4;--border:#bbf7d0;--accent:#16a34a;--accent2:#15803d;--blue:#0891b2;--ok:#22c55e;--danger:#ef4444;--purple:#8b5cf6;--text:#14532d;--dim:#6b7280;--mono:'Share Tech Mono',monospace;--display:'Orbitron',monospace;--body:'Exo 2',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:var(--body);min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(22,163,74,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(22,163,74,.04) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;z-index:0;}
+.wrap{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:20px 14px 40px;}
+nav{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:0 18px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.nav-logo{font-family:var(--display);font-size:14px;font-weight:900;letter-spacing:3px;padding:14px 0;color:var(--text);}
+.nav-logo span{color:var(--accent);}
+.nav-right{display:flex;align-items:center;gap:10px;padding:8px 0;}
+#clk{font-family:var(--mono);font-size:14px;color:var(--accent);letter-spacing:2px;}
+#tgl{font-size:9px;color:var(--dim);font-family:var(--mono);}
+.logout-btn{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);color:var(--danger);padding:5px 12px;border-radius:6px;font-family:var(--mono);font-size:10px;cursor:pointer;letter-spacing:1px;}
+.hero{text-align:center;padding:32px 20px 40px;}
+.hero-tag{font-family:var(--mono);font-size:10px;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;}
+.hero-title{font-family:var(--display);font-size:clamp(22px,5vw,36px);font-weight:900;color:var(--text);letter-spacing:2px;margin-bottom:8px;}
+.hero-title span{color:var(--accent);}
+.hero-sub{font-size:13px;color:var(--dim);font-family:var(--mono);letter-spacing:1px;}
+.modules{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px;}
+@media(max-width:500px){.modules{grid-template-columns:1fr;}}
+.mod-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:24px 20px;text-decoration:none;color:var(--text);transition:all .25s;position:relative;overflow:hidden;display:block;}
+.mod-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 8px 24px rgba(22,163,74,.15);}
+.mod-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.mod-card.m1::before{background:linear-gradient(90deg,var(--accent2),var(--accent));}
+.mod-card.m2::before{background:linear-gradient(90deg,#0077b6,var(--blue));}
+.mod-card.m3::before{background:linear-gradient(90deg,#028090,var(--ok));}
+.mod-card.m4::before{background:linear-gradient(90deg,#6d28d9,var(--purple));}
+.mod-card.m5::before{background:linear-gradient(90deg,#be185d,#f472b6);}
+.mod-card.m6::before{background:linear-gradient(90deg,#b45309,#f59e0b);}
+.mod-icon{font-size:32px;margin-bottom:12px;}
+.mod-title{font-family:var(--display);font-size:14px;font-weight:700;color:var(--text);letter-spacing:1px;margin-bottom:8px;}
+.mod-desc{font-size:12px;color:var(--dim);line-height:1.7;margin-bottom:12px;}
+.mod-features{display:flex;flex-direction:column;gap:3px;}
+.mod-feat{font-family:var(--mono);font-size:10px;color:var(--dim);}
+.mod-feat::before{content:'→ ';}
+.mod-badge{position:absolute;bottom:14px;right:14px;font-family:var(--mono);font-size:9px;font-weight:bold;padding:3px 8px;border-radius:20px;background:rgba(22,163,74,.1);color:var(--accent);border:1px solid rgba(22,163,74,.2);}
+footer{text-align:center;font-size:9px;color:var(--dim);font-family:var(--mono);letter-spacing:1px;border-top:1px solid var(--border);padding-top:14px;}
+footer span{color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="nav-logo">INTERVAL<span>CYBER</span></div>
+    <div class="nav-right">
+      <div>
+        <div id="clk">00:00:00</div>
+        <div id="tgl">-- --- ----</div>
+      </div>
+      <button class="logout-btn" onclick="if(confirm('Keluar dari sistem?'))window.location.href='index.html'">⏏ KELUAR</button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-tag">IntervalCyber Field Admin System v2.0</div>
+    <div class="hero-title">SELAMAT DATANG,<br><span>ADMIN LAPANGAN</span></div>
+    <div class="hero-sub">Pilih modul di bawah untuk mulai bekerja</div>
+  </div>
+
+  <div class="modules">
+    <a class="mod-card m1" href="produksi.html">
+      <div class="mod-icon">📋</div>
+      <div class="mod-title">PRODUKSI</div>
+      <div class="mod-desc">Pencatatan ritase truk, tonase material, dan pemantauan target produksi harian per shift.</div>
+      <div class="mod-features">
+        <div class="mod-feat">Catat ritase truk per shift</div>
+        <div class="mod-feat">Rekap tonase material</div>
+        <div class="mod-feat">Export Excel & PDF</div>
+      </div>
+      <div class="mod-badge">PRODUKSI</div>
+    </a>
+    <a class="mod-card m2" href="logistik.html">
+      <div class="mod-icon">⛽</div>
+      <div class="mod-title">LOGISTIK & GUDANG</div>
+      <div class="mod-desc">Monitor stok BBM solar, sparepart alat berat, dan pencatatan keluar masuk barang gudang.</div>
+      <div class="mod-features">
+        <div class="mod-feat">Stok BBM real-time</div>
+        <div class="mod-feat">Monitor sparepart kritis</div>
+        <div class="mod-feat">Export Excel & PDF</div>
+      </div>
+      <div class="mod-badge">LOGISTIK</div>
+    </a>
+    <a class="mod-card m3" href="maintenance.html">
+      <div class="mod-icon">🔧</div>
+      <div class="mod-title">MAINTENANCE ALAT</div>
+      <div class="mod-desc">Rekap Hour Meter alat berat, jadwal servis otomatis, dan pencatatan downtime operasional.</div>
+      <div class="mod-features">
+        <div class="mod-feat">Rekap HM alat berat</div>
+        <div class="mod-feat">Alert jadwal servis</div>
+        <div class="mod-feat">Export Excel & PDF</div>
+      </div>
+      <div class="mod-badge">MAINTENANCE</div>
+    </a>
+    <a class="mod-card m4" href="laporan.html">
+      <div class="mod-icon">📊</div>
+      <div class="mod-title">LAPORAN HARIAN</div>
+      <div class="mod-desc">Rekap laporan shift, dokumentasi kejadian lapangan, dan catatan untuk supervisor.</div>
+      <div class="mod-features">
+        <div class="mod-feat">Timeline kejadian</div>
+        <div class="mod-feat">GPS Geotagging</div>
+        <div class="mod-feat">Export Excel & PDF</div>
+      </div>
+      <div class="mod-badge">LAPORAN</div>
+    </a>
+    <a class="mod-card m5" href="absen.html">
+      <div class="mod-icon">👤</div>
+      <div class="mod-title">ABSENSI</div>
+      <div class="mod-desc">Absensi karyawan, alat berat, dan jadwal shift lengkap dengan catatan serah terima.</div>
+      <div class="mod-features">
+        <div class="mod-feat">Absen karyawan & alat</div>
+        <div class="mod-feat">Jadwal shift</div>
+        <div class="mod-feat">Export Excel & PDF</div>
+      </div>
+      <div class="mod-badge">ABSENSI</div>
+    </a>
+    <a class="mod-card m6" href="stok.html">
+      <div class="mod-icon">📦</div>
+      <div class="mod-title">STOK & INVENTARIS</div>
+      <div class="mod-desc">Monitor stok barang, deteksi selisih otomatis, dan pencatatan pergerakan inventaris.</div>
+      <div class="mod-features">
+        <div class="mod-feat">Anti-manipulasi data</div>
+        <div class="mod-feat">Deteksi selisih otomatis</div>
+        <div class="mod-feat">Export Excel & PDF</div>
+      </div>
+      <div class="mod-badge">STOK</div>
+    </a>
+  </div>
+
+  <footer>INTERVALCYBER SYSTEM &nbsp;|&nbsp; <span>FIELD ADMIN</span> &nbsp;|&nbsp; v2.0 · 2026</footer>
+</div>
+<script>
+function updateClock(){
+  const now=new Date();
+  document.getElementById('clk').textContent=now.toLocaleTimeString('id-ID',{hour12:false});
+  document.getElementById('tgl').textContent=now.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+}
+updateClock(); setInterval(updateClock,1000);
+</script>
+</body>
+</html>
